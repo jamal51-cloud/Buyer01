@@ -6,27 +6,34 @@
   <title>PRAA STORE - Store Online</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       font-family: 'Luckiest Guy', cursive;
       color: #fff;
       overflow-x: hidden;
-      background: url('https://img1.pixhost.to/images/7103/620500938_imgtmp.jpg') no-repeat center center fixed;
+      background: url('https://img1.pixhost.to/images/7106/620536028_skyzo.jpg') no-repeat center center fixed;
       background-size: cover;
+      position: relative;
     }
     header {
       text-align: center;
       padding: 2rem 1rem;
-      background: transparent;
+      z-index: 2;
+      position: relative;
     }
     header h1 {
       margin: 0;
-      font-size: 3.2rem;
-      background: linear-gradient(to bottom, #eeeeee, #888888);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(200, 200, 200, 0.6), 0 0 20px rgba(180,180,180,0.4);
+      font-size: 3.5rem;
+      color: #fff200;
+      text-shadow:
+        0 0 5px #fff200,
+        0 0 10px #ff9900,
+        0 0 15px #ff6600,
+        0 0 25px #ff5500;
     }
     header p {
       font-size: 1rem;
@@ -40,40 +47,42 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
+      z-index: 2;
+      position: relative;
     }
     .card {
       background: rgba(20, 20, 20, 0.7);
       border-radius: 16px;
       padding: 1.5rem;
-      box-shadow: 0 0 15px rgba(180, 180, 180, 0.4),
-                  inset 0 0 8px rgba(150, 150, 150, 0.2),
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.4),
+                  inset 0 0 8px rgba(255, 140, 0, 0.2),
                   0 0 0 2px rgba(255,255,255,0.05);
       backdrop-filter: blur(6px);
       transition: transform 0.3s, box-shadow 0.3s;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 0 25px #ccc,
-                  0 0 10px #999,
-                  0 0 5px #777;
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 25px orange,
+                  0 0 10px #ff6600,
+                  0 0 5px #cc3300;
     }
     .card h2 {
       font-size: 1.4rem;
-      background: linear-gradient(to bottom, #ffffff, #999);
+      background: linear-gradient(to bottom, #fff2cc, #ff9900);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.5rem;
-      text-shadow: 0 0 5px rgba(200,200,200,0.3);
+      text-shadow: 0 0 5px rgba(255,150,50,0.5);
     }
     .card p {
       font-family: Arial, sans-serif;
       font-size: 0.9rem;
-      color: #ccc;
+      color: #eee;
     }
     .btn {
       display: inline-block;
-      background: linear-gradient(to right, #888, #ccc);
+      background: linear-gradient(to right, #ff8800, #ffaa33);
       color: black;
       padding: 0.6rem 1.2rem;
       border-radius: 12px;
@@ -82,31 +91,64 @@
       margin-top: 1rem;
       transition: 0.3s;
       font-family: Arial, sans-serif;
-      box-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+      box-shadow: 0 0 10px rgba(255, 160, 0, 0.6);
     }
     .btn:hover {
-      background: linear-gradient(to right, #ccc, #aaa);
+      background: linear-gradient(to right, #ffaa33, #ff8800);
       color: white;
-      box-shadow: 0 0 15px #ddd;
+      box-shadow: 0 0 20px orange;
     }
     .footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
-      color: #ccc;
+      color: #ddd;
       font-family: Arial, sans-serif;
+      z-index: 2;
+      position: relative;
     }
     .footer a {
-      color: #aaa;
+      color: #ffae42;
       text-decoration: none;
     }
     .footer a:hover {
       color: #fff;
-      text-shadow: 0 0 8px #aaa;
+      text-shadow: 0 0 8px #ffa500;
+    }
+
+    /* ANIMASI BINTANG JATUH */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(180deg, rgba(255, 165, 0, 1), rgba(255, 140, 0, 0));
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(100px);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div class="stars" id="stars"></div>
 
   <header>
     <h1>PRAA STORE</h1>
@@ -114,73 +156,17 @@
   </header>
 
   <div class="container">
-
-    <div class="card">
-      <h2>TOP UP EPEP / ALL GAME</h2>
-      <p>List via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20top%20up">Chat Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>NOKOS ALL NEGARA</h2>
-      <p>Harga: 5k - 20k</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20beli%20NOKOS">Beli Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>SUNTIK SOSMED</h2>
-      <p>List via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20suntik%20sosmed">Chat Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>PANEL 1GB - UNLI</h2>
-      <p>Harga: 5k</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20beli%20panel">Beli Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>JOIN RESS / SC HOLDY</h2>
-      <p>List SC / Buy SC via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20mau%20join%20ress%20atau%20buy%20sc%20holdy">Chat Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>AKUN FF / LEPAS AKUN</h2>
-      <p>Info via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20lepas%20akun%20FF">Chat Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>MURBUG SC NIKA / HOLDY</h2>
-      <p>Info via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20murbug%20sc%20nika%20atau%20holdy">Chat Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>MURSUN</h2>
-      <p>Harga: 5k</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20mursun%205k">Pesan Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>JASA BUAT LOGO</h2>
-      <p>Mulai dari 500p</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20buat%20logo">Pesan Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>MURLOG</h2>
-      <p>Harga: 5k</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20murlog%205k">Pesan Sekarang</a>
-    </div>
-
-    <div class="card">
-      <h2>BOT PUSH KONTAK / BUG / JAGA GB</h2>
-      <p>Layanan via Chat</p>
-      <a class="btn" href="https://wa.me/6285338426252?text=Mau%20bot%20push%20kontak%20bug%20gb">Chat Sekarang</a>
-    </div>
-
+    <div class="card"><h2>TOP UP EPEP / ALL GAME</h2><p>List via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20top%20up">Chat Sekarang</a></div>
+    <div class="card"><h2>NOKOS ALL NEGARA</h2><p>Harga: 5k - 20k</p><a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20beli%20NOKOS">Beli Sekarang</a></div>
+    <div class="card"><h2>SUNTIK SOSMED</h2><p>List via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20suntik%20sosmed">Chat Sekarang</a></div>
+    <div class="card"><h2>PANEL 1GB - UNLI</h2><p>Harga: 5k</p><a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20saya%20mau%20beli%20panel">Beli Sekarang</a></div>
+    <div class="card"><h2>JOIN RESS / SC HOLDY</h2><p>List SC / Buy SC via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Halo%2C%20mau%20join%20ress%20atau%20buy%20sc%20holdy">Chat Sekarang</a></div>
+    <div class="card"><h2>AKUN FF / LEPAS AKUN</h2><p>Info via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20lepas%20akun%20FF">Chat Sekarang</a></div>
+    <div class="card"><h2>MURBUG SC NIKA / HOLDY</h2><p>Info via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20murbug%20sc%20nika%20atau%20holdy">Chat Sekarang</a></div>
+    <div class="card"><h2>MURSUN</h2><p>Harga: 5k</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20mursun%205k">Pesan Sekarang</a></div>
+    <div class="card"><h2>JASA BUAT LOGO</h2><p>Mulai dari 500p</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20buat%20logo">Pesan Sekarang</a></div>
+    <div class="card"><h2>MURLOG</h2><p>Harga: 5k</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20murlog%205k">Pesan Sekarang</a></div>
+    <div class="card"><h2>BOT PUSH KONTAK / BUG / JAGA GB</h2><p>Layanan via Chat</p><a class="btn" href="https://wa.me/6285338426252?text=Mau%20bot%20push%20kontak%20bug%20gb">Chat Sekarang</a></div>
   </div>
 
   <div class="footer">
@@ -189,5 +175,19 @@
     </p>
   </div>
 
+  <script>
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = 1 + Math.random() * 2 + "s";
+      star.style.opacity = Math.random();
+      star.style.transform = `rotate(${Math.random() * 360}deg)`;
+      star.style.animationDelay = Math.random() * 3 + "s";
+      starsContainer.appendChild(star);
+    }
+  </script>
+
 </body>
-</html>
+                                                                                       </html>
